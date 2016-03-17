@@ -11,7 +11,7 @@ MAIN_INSTALL_DIR=$MAIN_DIR/Binaries
 PATH_TO_DOWNLOAD_ALL=https://raw.githubusercontent.com/karies/cling-all-in-one/master/clone.sh
 
 # Script que sera executado contendo LLVM, CLANG e CLING
-ALL_FILE=$MAIN_DOWNLOAD_DIR/clone.sh
+ALL_FILE=$MAIN_DOWNLOAD_DIR/"clone.sh"
 
 
 # Criacao dos diretorios padroes
@@ -35,12 +35,11 @@ sudo zypper install cmake
 
 # LLVM + CLANG + CLING
 	# Download arquivo
-cd $MAIN_DONLOAD_DIR
+#cd $MAIN_DONLOAD_DIR #Softwares/Sources
 if ! [ -e $ALL_FILE ];
-	then wget $MAIN_DOWNLOAD_DIR $PATH_TO_DOWNLOAD_ALL;
+	then wget -P $MAIN_DOWNLOAD_DIR $PATH_TO_DOWNLOAD_ALL;
 fi
 
 	# Configuracao do script 
 cd $MAIN_DOWNLOAD_DIR
-chmod u+x clone.sh
-./clone.sh
+sh "clone.sh"

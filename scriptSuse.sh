@@ -36,7 +36,7 @@ CLING_FILE=$MAIN_DOWNLOAD_DIR/"root_v5.99.05.source.tar.gz"
 ZLIB_INSTALL_DIR=$MAIN_INSTALL_DIR/$ZLIB_VERSION
 LLVM_INSTALL_DIR=$MAIN_INSTALL_DIR/$LLVM_VERSION
 CLANG_INSTALL_DIR=$LLVM_INSTALL_DIR/tools/$CLANG_VERSION
-CLING_INSTALL_DIR=$LLVM_INSTALL_DIR/tools/$CLING_VERSION
+CLING_INSTALL_DIR=$MAIN_INSTALL_DIR/$CLING_VERSION
 
 #-------------------------------------------------------------------------------------------
 # Instalacao dos compiladores gcc c++ e fortran, cmake OK
@@ -94,6 +94,11 @@ fi
 
 #-------------------------------------------------------------------------------------------
 # Cling 
+	# Criacao do diretorio de instalacao
+if ! [ -e $CLING_INSTALL_DIR ];
+	then mkdir $CLING_INSTALL_DIR;
+fi
+
 	# Download
 if ! [ -e $CLING_FILE ];
 	then wget -P $MAIN_DOWNLOAD_DIR $PATH_TO_DOWNLOAD_CLING;
@@ -124,14 +129,9 @@ tar -vzxf $CLING_FILE
 mv root $LLVM_VERSION/tools/$CLING_VERSION
 
 	# Configuracao LLVM e Clang e Cling
-cd $MAIN_DOWNLOAD_DIR/$LLVM_VERSION			# Sources/llvm
-CC=gcc CXX=g++ FC=gfortran F77=gfortran ./configure --prefix=$LLVM_INSTALL_DIR
-cmake -G "Unix Makefiles" 
-make 
-
-	# Verificacao da construcao do CLING e instalacao
-cd $MAIN_DOWNLOAD_DIR/$LLVM_VERSION/tools/$CLING_VERSION
-CC=gcc CXX=g++ FC=gfortran F77=gfortran ./configure --prefix=$LLVM_INSTALL_DIR 
+cd $CLING_INSTALL_DIR			# Binaries/cling
+CC=gcc CXX=g++ FC=gfortran F77=gfortran ./configure 
+cmake -G "Unix Makefiles" $MAIN_INSTALL_DIR/$LLVM_VERSION/tools/$CLING_VERSION
 make install
 
 	# Verificacao da construcao do CLANG e instalacao

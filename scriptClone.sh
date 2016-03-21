@@ -35,6 +35,7 @@ sudo zypper install cmake
 
 # LLVM + CLANG + CLING
 	# Download arquivo
+cd $MAIN_DONLOAD_DIR
 if ! [ -e $ALL_FILE ];
 	then wget $MAIN_DOWNLOAD_DIR $PATH_TO_DOWNLOAD_ALL;
 fi

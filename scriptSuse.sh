@@ -129,29 +129,32 @@ tar -vzxf $CLING_FILE
 mv root $LLVM_VERSION/tools/$CLING_VERSION
 
 	# Configuracao LLVM e Clang e Cling
-cd $CLING_INSTALL_DIR			# Binaries/cling
-CC=gcc CXX=g++ FC=gfortran F77=gfortran ./configure 
-cmake -G "Unix Makefiles" $MAIN_INSTALL_DIR/$LLVM_VERSION/tools/$CLING_VERSION
-make install
+#cd $CLING_INSTALL_DIR			# Binaries/cling
+#CC=gcc CXX=g++ FC=gfortran F77=gfortran ./configure 
+#cmake -G "Unix Makefiles" $MAIN_INSTALL_DIR/$LLVM_VERSION/tools/$CLING_VERSION
+#make install
 
 	# Verificacao da construcao do CLANG e instalacao
-cd $MAIN_DOWNLOAD_DIR/$LLVM_VERSION/tools/$CLANG_VERSION
-CC=gcc CXX=g++ FC=gfortran F77=gfortran --prefix=$LLVM_INSTALL_DIR 
-make test
-make install
+#cd $MAIN_DOWNLOAD_DIR/$LLVM_VERSION/tools/$CLANG_VERSION
+#CC=gcc CXX=g++ FC=gfortran F77=gfortran --prefix=$LLVM_INSTALL_DIR 
+#make test
+#make install
 
-	# Instalacao LLVM
+	# Configuracao LLVM
 cd $MAIN_DOWNLOAD_DIR/$LLVM_VERSION			# Sources/LLVM
+CC=gcc CXX=g++ FC=gfortran F77=gfortran ./configure --prefix=$LLVM_INSTALL_DIR
+cmake -DCMAKE_INSTALL_PREFIX=$LLVM_INSTALL_DIR -DPYTHON_EXECUTABLE=$python 
 CC=gcc CXX=g++ FC=gfortran F77=gfortran --prefix=$LLVM_INSTALL_DIR
 make install 
+
 #-------------------------------------------------------------------------------------------
 # Finalizacao - exportar links para os enderecos padroes
 
-echo "export PATH=$PATH:$ZLIB_INSTALL_DIR/bin:$LLVM_INSTALL_DIR/bin" >> $HOME/.bashrc
+#echo "export PATH=$PATH:$ZLIB_INSTALL_DIR/bin:$LLVM_INSTALL_DIR/bin" >> $HOME/.bashrc
 
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ZLIB_INSTALL_DIR/lib:$LLVM_INSTALL_DIR/lib" >> $HOME/.bashrc
+#echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ZLIB_INSTALL_DIR/lib:$LLVM_INSTALL_DIR/lib" >> $HOME/.bashrc
 
-echo "export INCLUDE=$INCLUDE:$ZLIB_INSTALL_DIR/include:$LLVM_INSTALL_DIR/include" >> $HOME/.bashrc
+#echo "export INCLUDE=$INCLUDE:$ZLIB_INSTALL_DIR/include:$LLVM_INSTALL_DIR/include" >> $HOME/.bashrc
 
 #-------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------

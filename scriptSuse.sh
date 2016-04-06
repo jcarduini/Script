@@ -141,11 +141,13 @@ mv root $LLVM_VERSION/tools/$CLING_VERSION
 #make install
 
 	# Configuracao LLVM
-cd $MAIN_DOWNLOAD_DIR/$LLVM_VERSION			# Sources/LLVM
-CC=gcc CXX=g++ FC=gfortran F77=gfortran ./configure --prefix=$LLVM_INSTALL_DIR
-cmake -DCMAKE_INSTALL_PREFIX=$LLVM_INSTALL_DIR -DPYTHON_EXECUTABLE=$python 
-CC=gcc CXX=g++ FC=gfortran F77=gfortran --prefix=$LLVM_INSTALL_DIR
-make install 
+cd $LLVM_INSTALL_DIR			# Binaries/LLVM
+CC=gcc CXX=g++ FC=gfortran F77=gfortran 
+#-G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$LLVM_INSTALL_DIR -DPYTHON_EXECUTABLE=$python-DLLVM 
+cmake $MAIN_DOWNLOAD_DIR/$LLVM_VERSION
+cmake --build .
+cmake --build . --target install
+
 
 #-------------------------------------------------------------------------------------------
 # Finalizacao - exportar links para os enderecos padroes

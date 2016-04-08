@@ -116,7 +116,7 @@ tar -vzxf $ZLIB_FILE
 cd $ZLIB_VERSION			# Sources/zlib
 CC=gcc CXX=g++ FC=gfortran F77=gfortran ./configure --prefix=$ZLIB_INSTALL_DIR
 make all -j$N
-make install
+sudo make install
 #-------------------------------------------------------------------------------------------
 # Clang OK
 	# Download
@@ -178,7 +178,7 @@ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=R
 	# Instalacao LLVM
 cd $LLVM_INSTALL_DIR
 make 
-make install
+sudo make install
 
 	# Descompactacao do source CLING e move para LLVM/tools
 #cd $MAIN_DOWNLOAD_DIR			# Sources

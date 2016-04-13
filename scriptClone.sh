@@ -13,11 +13,11 @@ MAIN_INSTALL_DIR=$MAIN_DIR/Binaries
 
 #--------------------------------------------------------------------------------------------
 # Versoes
-ALL_VERSION=root_v6.02.02.source
+ALL_VERSION=root_v6.02.03.source
 
 #--------------------------------------------------------------------------------------------
 # Caminho para baixar
-PATH_TO_DOWNLOAD_ALL=https://root.cern.ch/download/root_v6.02.02.source.tar.gz
+PATH_TO_DOWNLOAD_ALL=https://root.cern.ch/download/root_v6.02.03.source.tar.gz
 #PATH_TO_DOWNLOAD_ALL=https://raw.githubusercontent.com/karies/cling-all-in-one/master/clone.sh
 
 #--------------------------------------------------------------------------------------------
